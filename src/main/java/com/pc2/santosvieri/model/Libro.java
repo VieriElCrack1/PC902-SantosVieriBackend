@@ -17,7 +17,7 @@ public class Libro {
     private String serie;
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate fechaRegistro;
+    private LocalDate fecharegistro;
     private int estado;
 
     @ManyToOne
