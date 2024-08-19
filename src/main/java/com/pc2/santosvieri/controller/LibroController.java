@@ -28,9 +28,9 @@ public class LibroController {
             @RequestParam(value = "idcategoria", defaultValue = "0") int idcategoria) {
         Map<String, Object> salida = new HashMap<>();
         try {
-            List<Libro> lista = libroService.consultaLibros(titulo, anio, estado, idcategoria);
+            List<Libro> lista = libroService.consultaLibros(titulo + "%", anio, estado, idcategoria);
             if(CollectionUtils.isEmpty(lista)) {
-                salida.put("error", "lista vacia");
+                salida.put("mensaje", "lista vacia");
             }else {
                 if(lista.size() > 1) {
                     salida.put("mensaje", "Existe " + lista.size() +  " libros para mostrar");
@@ -40,7 +40,7 @@ public class LibroController {
                 salida.put("lista", lista);
             }
         }catch (Exception e) {
-            salida.put("error", e.getMessage());
+            salida.put("mensaje", e.getMessage());
         }
         return new ResponseEntity<Map<String, Object>>(salida, HttpStatus.OK);
     }
